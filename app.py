@@ -1,16 +1,20 @@
-import textwrap
 import os
+from dotenv import load_dotenv
 
 import google.generativeai as genai
 
-from IPython.display import display
-from IPython.display import Markdown
+# .environ u çalıştırmak için bu fonksiyonu en başta çalıştırmamız gerekiyor.
+load_dotenv()
 
-def to_markdown(text):
-  text = text.replace('•', '  *')
-  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
-
-
+# gemini bir LLM yani büyük dil modelidir.
 api_key = os.environ["GEMINI_API_KEY"]
 
 genai.configure(api_key=api_key)
+
+# dil modeli seçilir
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+query = "Bana blokzinicirin ne olduğunu anlatır mısın?"
+response = model.generate_content(query)
+
+print(response.text)

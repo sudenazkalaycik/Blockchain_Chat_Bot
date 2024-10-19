@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 streamlit = "*"
 google-generativeai = "*"
+python-dotenv = "*"
+black = "*"
 
 [dev-packages]
 
